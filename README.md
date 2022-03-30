@@ -4,7 +4,7 @@
 
 ## Project description
 
-THis project is meant to simulate a logistics company which wishes to implement a new infrastructure that helps them maximize the profit and lower their workload. For that, they hired us to create a new software that is capable of performing algorithmic calculations to determine the perfect solution for each of their needs.
+This project is meant to simulate a logistics company which wishes to implement a new infrastructure that helps them maximize the profit and lower their workload. For that, they hired us to create a new software that is capable of performing algorithmic calculations to determine the perfect solution for each of their needs.
 
 ### Main Features
 
