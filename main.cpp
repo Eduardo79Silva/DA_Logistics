@@ -28,8 +28,9 @@ int main() {
 
     cout << "Debug" << endl;
 
-    list<vector<int>> enc = data.getParcels();
+    /*list<vector<int>> enc = data.getParcels();
     list<vector<int>> car = data.getVans();
+
     vector<int> encomendas;
     vector<int> carrinhas;
 
@@ -38,23 +39,31 @@ int main() {
     }
     for (auto v:car) {
         carrinhas.push_back(v[0]);
-    }
+    }*/
+
+    vector<tuple<double, int, int, int, int>> encomendas = data.getParcelsC();
+    vector<tuple<double, int, int, int>> carrinhas = data.getVansC();
 
     sort(encomendas.begin(), encomendas.end());
     sort(carrinhas.rbegin(), carrinhas.rend());
-    vector<vector<int>> distribuicao = NStaff::minStaff(encomendas, carrinhas);
+
+
+
+
+    vector<vector<int>> distribuicao = NStaff::minStaffNew(encomendas, carrinhas);
 
     int carr = 0;
     for (auto v:distribuicao) {
-        int tot = 0;
-        cout << carr << " ";
+        int totV = 0;
+        int totW = 0;
+        cout << "Carrinha " << carr << ": ";
         for (auto it:v) {
-            cout << encomendas[it] << " " ;
-            tot += encomendas[it];
+            cout << get<1>(encomendas[it]) << "/" << get<2>(encomendas[it]) << " " ;
+            totV += get<1>(encomendas[it]);
+            totW += get<2>(encomendas[it]);
         }
-        cout << "-" << tot;
-        cout << "-" << carrinhas[carr];
-
+        cout << "Totais: " << totV << "/" << totW << " ";
+        cout << "Capacidades: " << get<1>(carrinhas[carr]) << "/" << get<2>(carrinhas[carr]);
         cout << endl;
         carr++;
     }

@@ -10,11 +10,12 @@
 #include <fstream>
 #include <vector>
 #include <list>
+#include <tuple>
 
 using namespace std;
 
 /**
-     * Classe que representa os dados telativos a encomendas e carrinhas da empresa de logística, para que os mesmos possam ser usados globalmente por outras classes que contêm os algoritmos que solucionam os vários problemas propostos.
+     * Classe que representa os dados relativos a encomendas e carrinhas da empresa de logística, para que os mesmos possam ser usados globalmente por outras classes que contêm os algoritmos que solucionam os vários problemas propostos.
      */
 
 class Data {
@@ -23,10 +24,21 @@ private:
 
     list<vector<int>> parcels;
     list<vector<int>> vans;
-public:
-    const list<vector<int>> &getParcels() const;
 
+    vector<double> coefP;
+    vector<double> coefV;
+
+    vector<tuple<double,int,int,int,int>> parcelsC;
+    vector<tuple<double,int,int,int>> vansC;
+
+public:
+
+    const list<vector<int>> &getParcels() const;
     const list<vector<int>> &getVans() const;
+    const vector<double> &getCoefP() const;
+    const vector<double> &getCoefV() const;
+    const vector<tuple<double, int, int, int, int>> &getParcelsC() const;
+    const vector<tuple<double, int, int, int>> &getVansC() const;
 
 public:
 
@@ -38,23 +50,24 @@ public:
      * @param vans Lista de vetores em que serão guardados internamente os dados relativos às carrinhas.
      */
     void readData(list<vector<int>> & parcels, list<vector<int>> & vans);
-
-
-
-
-
     /**
-     * Calcula o coeficiente de "importância" associado a cada carrinha e adiciona ao ficheiro respetivo
+     * Calcula o coeficiente de "importância" associado a cada carrinha.
      * @param vans Lista de vetores em que estão guardados os dados relativos às carrinhas.
      */
-    void coefVans(list<vector<int>> & vans);
+    vector<double> coefVans(list<vector<int>> & vans);
     /**
-     * Calcula o coeficiente de "importância" associado a cada encomenda e adiciona ao ficheiro respetivo
+     * Calcula o coeficiente de "importância" associado a cada encomenda.
      * @param vans Lista de vetores em que estão guardados os dados relativos às encomendas.
      */
-    void coefParcels(list<vector<int>> & parcels);
-
-
+    vector<double> coefParcels(list<vector<int>> & parcels);
+    /**
+     * Junta as informações das encomendas e das carrinhas com os seus respetivos coeficientes num tuplo.
+     * @param parcels Lista de vetores em que estão guardados os dados relativos às encomendas.
+     * @param vans Lista de vetores em que estão guardados os dados relativos às carrinhas.
+     * @param coefparcels Vetor com os coeficientes das encomendas.
+     * @param coefvans Vetor com os coeficientes das carrinhas.
+     */
+    void addCoefs(list<vector<int>> & parcels, list<vector<int>> & vans, vector<double> coefparcels,vector<double> coefvans);
 
 };
 
