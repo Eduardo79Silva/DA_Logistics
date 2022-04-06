@@ -64,6 +64,7 @@ const list<vector<int>> &Data::getVans() const {
     return vans;
 }
 
+<<<<<<< HEAD
 const vector<double> &Data::getCoefP() const {
     return coefP;
 }

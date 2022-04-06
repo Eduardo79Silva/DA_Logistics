@@ -10,12 +10,19 @@
 #include <fstream>
 #include <vector>
 #include <list>
+<<<<<<< HEAD
 #include <tuple>
+=======
+>>>>>>> main
 
 using namespace std;
 
 /**
+<<<<<<< HEAD
      * Classe que representa os dados relativos a encomendas e carrinhas da empresa de logística, para que os mesmos possam ser usados globalmente por outras classes que contêm os algoritmos que solucionam os vários problemas propostos.
+=======
+     * Classe que representa os dados telativos a encomendas e carrinhas da empresa de logística, para que os mesmos possam ser usados globalmente por outras classes que contêm os algoritmos que solucionam os vários problemas propostos.
+>>>>>>> main
      */
 
 class Data {
@@ -24,6 +31,7 @@ private:
 
     list<vector<int>> parcels;
     list<vector<int>> vans;
+<<<<<<< HEAD
 
     vector<double> coefP;
     vector<double> coefV;
@@ -50,6 +58,7 @@ public:
      * @param vans Lista de vetores em que serão guardados internamente os dados relativos às carrinhas.
      */
     void readData(list<vector<int>> & parcels, list<vector<int>> & vans);
+
     /**
      * Calcula o coeficiente de "importância" associado a cada carrinha.
      * @param vans Lista de vetores em que estão guardados os dados relativos às carrinhas.
@@ -68,6 +77,7 @@ public:
      * @param coefvans Vetor com os coeficientes das carrinhas.
      */
     void addCoefs(list<vector<int>> & parcels, list<vector<int>> & vans, vector<double> coefparcels,vector<double> coefvans);
+
 
 };
 
