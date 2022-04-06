@@ -64,7 +64,6 @@ vector<vector<int>> NStaff::minStaffNew (vector<tuple<double,int,int,int,int>> p
         }
     }
 
-    sort(van_items.begin, van_items.end, [] (const auto &a, const auto &b) {return a[3] < b[3]});
     return van_items;
 
 }

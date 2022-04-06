@@ -13,7 +13,8 @@ void Express::sortParcels(vector<vector<int>> parcels) {
 
     sort(parcels.begin(), parcels.end(), [](const auto &a, const auto &b){return a[3]<b[3];});
     for(auto parcel : parcels){
-        cout << "4";
+        cout << parcel[3] ;
+        cout << " ";
     }
 
 }

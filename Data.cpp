@@ -13,7 +13,7 @@ void Data::readData(list<vector<int>> &parcels, list<vector<int>> &vans) {
     int volume, weight, reward, duration;
     string svolume, sweight, sreward, sduration;
 
-    parcel.open("..\\.\\dataset\\encomendas.txt");
+    parcel.open(".././dataset/encomendas.txt");
     parcel.ignore(1000, '\n');
 
     while (getline(parcel, svolume, ' ')) {
@@ -34,7 +34,7 @@ void Data::readData(list<vector<int>> &parcels, list<vector<int>> &vans) {
     int maxVol, maxWeight, cost;
     string smaxVol, smaxWeight, scost;
 
-    van.open("..\\.\\dataset\\carrinhas2.txt");
+    van.open(".././dataset/carrinhas.txt");
     van.ignore(1000, '\n');
 
     while (getline(van, smaxVol, ' ')) {
@@ -64,7 +64,6 @@ const list<vector<int>> &Data::getVans() const {
     return vans;
 }
 
-<<<<<<< HEAD
 const vector<double> &Data::getCoefP() const {
     return coefP;
 }

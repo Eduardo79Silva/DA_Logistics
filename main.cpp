@@ -1,5 +1,5 @@
 #include <iostream>
-<<<<<<< HEAD
+#include "Express.h"
 #include <algorithm>
 #include "Data.h"
 #include "NStaff.h"
@@ -9,8 +9,15 @@ using namespace std;
 int main() {
 
     Data data = Data();  //read data from files
+    Express express;
+    vector<vector<int>> newParcels;
+    for(auto v : data.getParcels()){
+        newParcels.push_back(v);
+    }
 
     cout << "Debug" << endl;
+
+    express.sortParcels(newParcels);
 
     vector<tuple<double, int, int, int, int>> encomendas = data.getParcelsC();
     vector<tuple<double, int, int, int>> carrinhas = data.getVansC();

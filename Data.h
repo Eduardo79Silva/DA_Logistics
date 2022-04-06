@@ -10,10 +10,7 @@
 #include <fstream>
 #include <vector>
 #include <list>
-<<<<<<< HEAD
 #include <tuple>
-=======
->>>>>>> main
 
 using namespace std;
 
@@ -31,8 +28,6 @@ private:
 
     list<vector<int>> parcels;
     list<vector<int>> vans;
-<<<<<<< HEAD
-
     vector<double> coefP;
     vector<double> coefV;
 
