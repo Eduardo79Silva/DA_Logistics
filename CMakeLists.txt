@@ -3,4 +3,4 @@ project(DA_Logistics)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(DA_Logistics main.cpp)
+add_executable(DA_Logistics main.cpp Data.cpp Data.h Express.cpp Express.h)
