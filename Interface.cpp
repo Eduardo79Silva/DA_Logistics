@@ -215,7 +215,7 @@ void Interface::minStaffPage() {
             cout << "Volume balance: " + to_string(totV) + "/" + to_string(get<1>(vans[carr])) << "     " << "\n";
             carr++;
         }
-        cout << "\nThere are " << to_string(distribuicao.size()-carr) << " unused vans out of " << vans.size() << " available.\n";
+        cout << "\nThere are " << to_string(distribuicao.size()-carr) << " unused vans.\n";
         std::cout << "\n[0] Sair\n"
                   << "\n>";
         std::cin >> c;
