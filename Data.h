@@ -16,10 +16,14 @@ using namespace std;
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Classe que representa os dados relativos a encomendas e carrinhas da empresa de logística, para que os mesmos possam ser usados globalmente por outras classes que contêm os algoritmos que solucionam os vários problemas propostos.
 =======
      * Classe que representa os dados telativos a encomendas e carrinhas da empresa de logística, para que os mesmos possam ser usados globalmente por outras classes que contêm os algoritmos que solucionam os vários problemas propostos.
 >>>>>>> main
+=======
+     * Classe que representa os dados relativos a encomendas e carrinhas da empresa de logística, para que os mesmos possam ser usados globalmente por outras classes que contêm os algoritmos que solucionam os vários problemas propostos.
+>>>>>>> feat_scenario1
      */
 
 class Data {
@@ -28,11 +32,14 @@ private:
 
     list<vector<int>> parcels;
     list<vector<int>> vans;
+
     vector<double> coefP;
     vector<double> coefV;
 
-    vector<tuple<double,int,int,int,int>> parcelsC;
-    vector<tuple<double,int,int,int>> vansC;
+    vector<tuple<double,int,int,int,int,int>> parcelsC;
+    vector<tuple<double,int,int,int,int>> vansC;
+
+
 
 public:
 
@@ -40,11 +47,14 @@ public:
     const list<vector<int>> &getVans() const;
     const vector<double> &getCoefP() const;
     const vector<double> &getCoefV() const;
-    const vector<tuple<double, int, int, int, int>> &getParcelsC() const;
-    const vector<tuple<double, int, int, int>> &getVansC() const;
+    const vector<tuple<double, int, int, int, int,int>> &getParcelsC() const;
+    const vector<tuple<double, int, int, int,int>> &getVansC() const;
 
 public:
 
+    /**
+     * Construtor da classe, inicia todos os campos de informação a partir dos ficheiros.
+     */
     Data();
 
     /**
@@ -53,7 +63,6 @@ public:
      * @param vans Lista de vetores em que serão guardados internamente os dados relativos às carrinhas.
      */
     void readData(list<vector<int>> & parcels, list<vector<int>> & vans);
-
     /**
      * Calcula o coeficiente de "importância" associado a cada carrinha.
      * @param vans Lista de vetores em que estão guardados os dados relativos às carrinhas.
@@ -72,7 +81,6 @@ public:
      * @param coefvans Vetor com os coeficientes das carrinhas.
      */
     void addCoefs(list<vector<int>> & parcels, list<vector<int>> & vans, vector<double> coefparcels,vector<double> coefvans);
-
 
 };
 

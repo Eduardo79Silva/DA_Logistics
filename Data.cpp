@@ -72,11 +72,12 @@ const vector<double> &Data::getCoefV() const {
     return coefV;
 }
 
-const vector<tuple<double, int, int, int, int>> &Data::getParcelsC() const {
+
+const vector<tuple<double, int, int, int, int,int>> &Data::getParcelsC() const {
     return parcelsC;
 }
 
-const vector<tuple<double, int, int, int>> &Data::getVansC() const {
+const vector<tuple<double, int, int, int,int>> &Data::getVansC() const {
     return vansC;
 }
 
@@ -131,14 +132,14 @@ void Data::addCoefs(list<vector<int>> &parcels, list<vector<int>> &vans, vector<
 
     int nparcel = 0;
     for (auto p:parcels) {
-        tuple<double, int, int, int, int> parcel {coefparcels[nparcel], p[0], p[1], p[2], p[3]};
+        tuple<double, int, int, int, int,int> parcel {coefparcels[nparcel], p[0], p[1], p[2], p[3],nparcel};
         this->parcelsC.push_back(parcel);
         nparcel++;
     }
 
     int nvan = 0;
     for (auto v:vans) {
-        tuple<double, int, int, int> van {coefvans[nvan], v[0], v[1], v[2]};
+        tuple<double, int, int, int,int> van {coefvans[nvan], v[0], v[1], v[2], nvan};
         this->vansC.push_back(van);
         nvan++;
     }
