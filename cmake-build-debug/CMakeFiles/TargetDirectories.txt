@@ -1,0 +1,3 @@
+C:/CLion Projects/C++/Projetos/DA Logistics/cmake-build-debug/CMakeFiles/DA_Logistics.dir
+C:/CLion Projects/C++/Projetos/DA Logistics/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/CLion Projects/C++/Projetos/DA Logistics/cmake-build-debug/CMakeFiles/rebuild_cache.dir
