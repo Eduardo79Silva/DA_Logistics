@@ -39,7 +39,7 @@ void Interface::menu() {
                 //pagClientes();
                 break;
             case '5':
-                //pagClientes();
+                expressPage();
                 break;
             case '0':
                 //outputDados();
@@ -216,7 +216,7 @@ void Interface::minStaffPage() {
             carr++;
         }
         cout << "\nThere are " << to_string(distribuicao.size()-carr) << " unused vans.\n";
-        std::cout << "\n[0] Sair\n"
+        std::cout << "\n[0] Exit\n"
                   << "\n>";
         std::cin >> c;
         if (c==0) {
@@ -226,9 +226,51 @@ void Interface::minStaffPage() {
 
 }
 
+void Interface::expressPage() {
+    vector<vector<int>> express = data.getExpressParcels();
+    Express::sortParcels(express);
+    int expressSize = Express::chooseParcels(express);
+    data.setExpressParcels(Express::getChosenParcels());
+    express = data.getExpressParcels();
+
+    int c;
+
+    TextTable t('-', '|', '+');
+    t.add("Volume");
+    t.add("Weight");
+    t.add("Reward");
+    t.add("Time shipped");
+    t.endOfRow();
+    t.add(" ");
+    t.add(" ");
+    t.add(" ");
+    t.add(" ");
+    t.endOfRow();
+
+    int id = 0;
+
+    while (true) {
+        system("CLS");
+        std::cout << "[Express Parcels Shipped]\n";
+        for (auto p: express) {
+            t.add(to_string(p[0]));
+            t.add(to_string(p[1]));
+            t.add(to_string(p[2]));
+            t.add(to_string(p[3]));
+            t.endOfRow();
+        }
+        cout << t;
+        cout << "\nThere are " << to_string((expressSize)) << " shipped parcels out of "
+             << to_string(data.getParcels().size()) << " parcels.\n";
+        std::cout << "\n[0] Exit\n"
+                  << "\n>";
+        std::cin >> c;
+        if (c == 0) {
+            break;
+        }
 
 
+    }
 
 
-
-
+}

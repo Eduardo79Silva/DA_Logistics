@@ -14,6 +14,7 @@
 #include <algorithm>
 #include "Data.h"
 #include "NStaff.h"
+#include "Express.h"
 
 /**
      * Classe que representa o menu da aplicação.
@@ -35,6 +36,7 @@ public:
     void parcelsPage();
     void vansPage();
     void minStaffPage();
+    void expressPage();
 };
 
 
