@@ -5,7 +5,6 @@
 #include "NStaff.h"
 
 
-
 vector<vector<int>> NStaff::minStaff (vector<tuple<double,int,int,int,int,int>> parcels, vector<tuple<double,int,int,int,int>> vans) {
 
     //passar o vetor de carrinhas da maior para a menor

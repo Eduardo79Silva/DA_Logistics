@@ -39,7 +39,7 @@ void Interface::menu() {
                 maxProfitPage();
                 break;
             case '5':
-                //pagClientes();
+                expressPage();
                 break;
             case '0':
                 //outputDados();
@@ -216,7 +216,7 @@ void Interface::minStaffPage() {
             carr++;
         }
         cout << "\nThere are " << to_string(distribuicao.size()-carr) << " unused vans.\n";
-        std::cout << "\n[0] Sair\n"
+        std::cout << "\n[0] Exit\n"
                   << "\n>";
         std::cin >> c;
         if (c==0) {
@@ -226,15 +226,20 @@ void Interface::minStaffPage() {
 
 }
 
-void Interface::maxProfitPage() {
+void Interface::expressPage() {
+    vector<vector<int>> express = data.getExpressParcels();
+    Express::sortParcels(express);
+    int expressSize = Express::chooseParcels(express);
+    data.setExpressParcels(Express::getChosenParcels());
+    express = data.getExpressParcels();
 
     int c;
 
-    TextTable t( '-', '|', '+' );
-    t.add(" ");
-    t.add("Encomendas (ID)");
-    t.add("Total Weight used/Weight capacity");
-    t.add("Total Volume used/Volume capacity");
+    TextTable t('-', '|', '+');
+    t.add("Volume");
+    t.add("Weight");
+    t.add("Reward");
+    t.add("Time shipped");
     t.endOfRow();
     t.add(" ");
     t.add(" ");
@@ -244,52 +249,38 @@ void Interface::maxProfitPage() {
 
     int id = 0;
 
-    vector<tuple<double, int, int, int, int, int>> parcels = this->data.getParcelsC();
-    vector<tuple<double, int, int, int, int>> vans = this->data.getVansC();
-
-    sort(parcels.begin(), parcels.end());
-    sort(vans.rbegin(), vans.rend());
-
-    vector<vector<int>> distribuicao = Profit::maxProfit(parcels, vans);
-
-
     while (true) {
         system("CLS");
-        std::cout << "[Parcel distribution per van]\n";
-        int carr = 0;
-        for (auto v:distribuicao) {
-            //cout << "\n" << "Van " + to_string(carr) << " - Parcels: \n\n";
-            int totW = 0;
-            int totV = 0;
-
-            string pID = "";
-            for (auto it:v) {
-                totW += get<2>(parcels[it]);
-                totV += get<1>(parcels[it]);
-                pID = pID + to_string(get<5>(parcels[it])) + ", ";
-            }
-
-            if (!pID.empty()) {
-                pID.pop_back();
-                pID.pop_back();
-            }
-
-            if (totW == 0 || totV == 0) break;
-            cout << "\n" << "VAN " + to_string(carr) << " - Parcels: \n\n";
-            cout << pID << "" << "\n\n";
-            cout << "Weight balance: " + to_string(totW) + "/" + to_string(get<2>(vans[carr])) << "     ";
-            cout << "Volume balance: " + to_string(totV) + "/" + to_string(get<1>(vans[carr])) << "     " << "\n";
-            carr++;
+        std::cout << "[Express Parcels Shipped]\n";
+        for (auto p: express) {
+            t.add(to_string(p[0]));
+            t.add(to_string(p[1]));
+            t.add(to_string(p[2]));
+            t.add(to_string(p[3]));
+            t.endOfRow();
         }
-        cout << "\nThere are " << to_string(distribuicao.size()-carr) << " unused vans.\n";
-        std::cout << "\n[0] Sair\n"
+        cout << t;
+        cout << "\nThere are " << to_string((expressSize)) << " shipped parcels out of "
+             << to_string(data.getParcels().size()) << " parcels.\n";
+        std::cout << "\n[0] Exit\n"
                   << "\n>";
         std::cin >> c;
-        if (c==0) {
+        if (c == 0) {
             break;
         }
+
+
     }
+
 
 }
 
 
+void Interface::maxProfitPage() {
+
+    vector<tuple<double, int, int, int, int, int>> parcels = data.getParcelsC();
+    vector<tuple<double, int, int, int, int>> vans = this->data.getVansC();
+
+    Profit::maxProfit(parcels, vans);
+
+}

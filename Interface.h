@@ -14,6 +14,7 @@
 #include <algorithm>
 #include "Data.h"
 #include "NStaff.h"
+#include "Express.h"
 #include "Profit.h"
 
 /**
@@ -36,6 +37,7 @@ public:
     void parcelsPage();
     void vansPage();
     void minStaffPage();
+    void expressPage();
     void maxProfitPage();
 };
 

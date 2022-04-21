@@ -54,6 +54,7 @@ Data::Data() {
     this->coefP = coefParcels(this->parcels);
     this->coefV = coefVans(this->vans);
     addCoefs(parcels,vans,coefP,coefV);
+    initializeExpress();
 }
 
 const list<vector<int>> &Data::getParcels() const {
@@ -71,6 +72,7 @@ const vector<double> &Data::getCoefP() const {
 const vector<double> &Data::getCoefV() const {
     return coefV;
 }
+
 
 const vector<tuple<double, int, int, int, int,int>> &Data::getParcelsC() const {
     return parcelsC;
@@ -143,4 +145,18 @@ void Data::addCoefs(list<vector<int>> &parcels, list<vector<int>> &vans, vector<
         nvan++;
     }
 
+}
+
+const vector<vector<int>> &Data::getExpressParcels() const {
+    return expressParcels;
+}
+
+void Data::initializeExpress() {
+    for(auto v : parcels){
+        expressParcels.push_back(v);
+    }
+}
+
+void Data::setExpressParcels(const vector<vector<int>> &expressParcels) {
+    Data::expressParcels = expressParcels;
 }

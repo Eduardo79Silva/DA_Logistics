@@ -14,7 +14,7 @@
 
 using namespace std;
 
-/**
+    /**
      * Classe que representa os dados relativos a encomendas e carrinhas da empresa de logística, para que os mesmos possam ser usados globalmente por outras classes que contêm os algoritmos que solucionam os vários problemas propostos.
      */
 
@@ -31,8 +31,7 @@ private:
     vector<tuple<double,int,int,int,int,int>> parcelsC;
     vector<tuple<double,int,int,int,int>> vansC;
 
-
-
+    vector<vector<int>> expressParcels;
 public:
 
     const list<vector<int>> &getParcels() const;
@@ -41,6 +40,8 @@ public:
     const vector<double> &getCoefV() const;
     const vector<tuple<double, int, int, int, int,int>> &getParcelsC() const;
     const vector<tuple<double, int, int, int,int>> &getVansC() const;
+    const vector<vector<int>> &getExpressParcels() const;
+    void setExpressParcels(const vector<vector<int>> &expressParcels);
 
 public:
 
@@ -74,6 +75,10 @@ public:
      */
     void addCoefs(list<vector<int>> & parcels, list<vector<int>> & vans, vector<double> coefparcels,vector<double> coefvans);
 
+    /**
+     * Inicializa o expressParcels para o tornar num vector<vector<int>> e facilitar os cálculos
+     */
+     void initializeExpress();
 };
 
 

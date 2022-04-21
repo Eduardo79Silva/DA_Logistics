@@ -9,8 +9,13 @@
 
 class Express {
 
+private:
+    inline static vector<vector<int>> chosenParcels;
+
 public:
-    void sortParcels(vector<vector<int>> parcels);
+    static void sortParcels(vector<vector<int>> &parcels);
+    static int chooseParcels(vector<vector<int>> sortedParcels);
+    static vector<vector<int>> getChosenParcels();
 
 };
 

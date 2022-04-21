@@ -14,7 +14,7 @@
 using namespace std;
 
 /**
-     * Classe que contém os algoritmos nescessários para o cenário 1, minimizar o número de staff a fazer entregas (ou seja, o número de carrinhas em atividade.
+     * Classe que contém os algoritmos nescessários para o cenário 1, minimizar o número de staff a fazer entregas (ou seja, o número de crrinhas em atividade.
      */
 
 class NStaff {
@@ -28,6 +28,7 @@ public:
      * @return Um vetor com as encomendas que são atribuídas a cada carrinha.
      */
     static vector<vector<int>> minStaff(vector<tuple<double,int,int,int,int,int>> parcels, vector<tuple<double,int,int,int,int>> vans);
+
 
 };
 
