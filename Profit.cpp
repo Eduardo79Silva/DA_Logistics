@@ -70,9 +70,9 @@ void Profit::maxProfit(vector<tuple<double,int,int,int,int,int>> parcels, vector
                 if(knapsack[i][j] == knapsack[i-1][j])
                     i--;
                 else {
-                    parcelsId.erase(parcelsId.begin()+i);
-                    profit.erase(profit.begin()+i);
-                    coeficient.erase(coeficient.begin()+i);
+                    parcelsId.erase(parcelsId.begin()+i-1);
+                    profit.erase(profit.begin()+i-1);
+                    coeficient.erase(coeficient.begin()+i-1);
                     j=j-coeficient[i];
                     i--;
                     n--;
