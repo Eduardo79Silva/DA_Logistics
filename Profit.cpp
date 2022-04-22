@@ -4,11 +4,15 @@
 
 #include "Profit.h"
 
+
 bool sortByCostVans(const tuple<double,int,int,int,int>& a, const tuple<double,int,int,int,int>& b) {
-    return (get<4>(a)/get<0>(a)*100 < get<4>(b))/get<0>(b)*100;
+    return (get<4>(a)/get<0>(a)*100 < get<4>(b))/get<0>(b)*100;  // Ordena as carrinhas pelo custo menor e que tenham ao mesmo tempo maior capacidade de transporte
 }
 
-int max(int a, int b) {
+
+// retorna o número máximo
+
+int Profit::max(int a, int b) {
     if(a>b) {
         return a;
     }
@@ -23,6 +27,7 @@ void Profit::maxProfit(vector<tuple<double,int,int,int,int,int>> parcels, vector
     vector<int> coeficient;
     vector<int> parcelsId;
     int usedVans = 0;
+    //int total=0;
 
     profit.push_back(0);
     coeficient.push_back(0);
@@ -34,42 +39,42 @@ void Profit::maxProfit(vector<tuple<double,int,int,int,int,int>> parcels, vector
         parcelsId.push_back(get<5>(parcels[i]));
     }
 
+    // Percorre todas as carrinhas vendo qual é a capacidade máxima de encomendas que é possivel colocar em cada carrinha
 
     for(int q=0; q<vans.size();q++) {
         if(parcels.size()!=parcelsId.size())
             usedVans+=1;
-        if(profit.size() == 1)
-            break;
         int n = profit.size();
         int vanC = get<0>(vans[q]);
         int  knapsack[n+1][vanC+1];
-        for(int i=0; i<n; i++) {
+        for(int i=0; i<=n; i++) {  // Começa a contruir a tabela para o knapsack
             for(int c=0; c<=vanC; c++) {
                 if(i==0 || c==0)
-                    //  If we are in the first row or column, put 0 in the table as Weight/Profit are always 0
+                    //  Se estivermos na primeira linha ou coluna da tabela, o valor da tabela é zero
                     knapsack[i][c] = 0;
-                else if(coeficient[i] <= c)
-                    //  If the weight of the current object i is <= than w, calculate profit
-                    // Example for first case, we have i=1 and w=0, write 0, then i=1, w=1, so Weight[1] = 2. 2 is not <=1 , so just copy Table[1-1][1] = 0
-                    // After we have i=1, w=2, so Weight[1] = 2 <=2, it means we take the max between Profit[1]+Table[0][2-2] and Table[1-1][2], which is  Profit[1] = 1
+                else if(coeficient[i-1] <= c)
+                    //  Se o coeficiente da encomenda atual for menor do que o coeficiente, calcule o lucro
 
-                    knapsack[i][c] = max(profit[i]+knapsack[i-1][c-coeficient[i]],knapsack[i-1][c]);
+
+                    knapsack[i][c] = Profit::max(profit[i-1]+knapsack[i-1][c-coeficient[i-1]],knapsack[i-1][c]);
                 else
                     knapsack[i][c] = knapsack[i-1][c];
             }
         }
 
         int op = knapsack[n][vanC];
+
+        // Se o lucro total de encomendas que é possível colocar na carrinha for superior ao custo da carrinha, calcula-se a subtração e remove-se as encomendas que foram posta na carrinha da lista de encomendas
+
         if(op > get<3>(vans[q])) {
-
-            cout << "Optimal solution is : " << op << '\n';
-            cout << "The profit is : " << op-get<3>(vans[q]) << '\n';
-
+            cout << "The van number " << get<4>(vans[q])  << " gets a profit of " << op-get<3>(vans[q]) << '\n';
+            //total+=op-get<3>(vans[q]);
             int i=n,j=vanC;
             while(i>0 && j>0) {
                 if(knapsack[i][j] == knapsack[i-1][j])
                     i--;
                 else {
+                    // remoção das encomendas que já foram postas na carrinha
                     parcelsId.erase(parcelsId.begin()+i-1);
                     profit.erase(profit.begin()+i-1);
                     coeficient.erase(coeficient.begin()+i-1);
@@ -82,8 +87,6 @@ void Profit::maxProfit(vector<tuple<double,int,int,int,int,int>> parcels, vector
 
     }
 
-   for(int i =0; i<parcelsId.size(); i++) {
-        cout << "Id das encomendas que sobram " << parcelsId[i] << '\n';
-    }
-    cout << "There are " << vans.size()-usedVans << " unused vans";
+   cout << "There are " << vans.size()-usedVans << " unused vans" << '\n';
+    //cout << "The total profit is " << total << '\n';
 }

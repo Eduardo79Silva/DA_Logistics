@@ -14,7 +14,7 @@
 using namespace std;
 
 /**
-     * Classe que contém os algoritmos nescessários para o cenário 1, minimizar o número de staff a fazer entregas (ou seja, o número de crrinhas em atividade.
+     * Classe que contém os algoritmos nescessários para o cenário 1, minimizar o número de staff a fazer entregas (ou seja, o número de carrinhas em atividade.
      */
 
 class NStaff {
